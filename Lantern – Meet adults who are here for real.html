@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lantern – Meet adults who are here for real</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F1FB; --surface:#FFFFFF; --ink:#232A5C; --muted:#5A6090; --line:#D9D6EE;
+  --amber:#F2B632; --amber-ink:#2A2100; --rose:#E4577A; --ok:#2F8F6B;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#14173A;--surface:#1E2250;--ink:#EEF0FF;--muted:#A9AED6;--line:#343977;--ok:#5FD3A3;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#14173A;--surface:#1E2250;--ink:#EEF0FF;--muted:#A9AED6;--line:#343977;--ok:#5FD3A3;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;line-height:1.08;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+header{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
+.logo{font:800 1.4rem "Bricolage Grotesque",sans-serif;text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.logo i{width:.9rem;height:1.2rem;border-radius:.45rem .45rem .3rem .3rem;background:var(--amber);box-shadow:0 0 18px 3px var(--amber)}
+nav a{margin-left:1.25rem;text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;padding:3rem 0 4.5rem}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800}
+.hero p{font-size:1.2rem;color:var(--muted);max-width:34rem;margin:1.25rem 0 2rem}
+.btn{display:inline-block;background:var(--amber);color:var(--amber-ink);font:700 1.05rem "Bricolage Grotesque",sans-serif;padding:.9rem 1.6rem;border-radius:999px;border:0;cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.06)}
+.note{display:block;margin-top:.9rem;font-size:.95rem;color:var(--muted)}
+/* the one memorable element: a lit profile card */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:1.1rem;max-width:340px;margin:0 auto;transform:rotate(2deg);box-shadow:0 0 70px -10px rgba(242,182,50,.55)}
+.photo{aspect-ratio:4/4.4;border-radius:20px;background:radial-gradient(circle at 70% 25%,var(--amber) 0 12%,transparent 13%),linear-gradient(160deg,#6C5CE7,var(--rose) 70%,var(--amber));position:relative}
+.photo span{position:absolute;left:.8rem;bottom:.8rem;background:var(--surface);color:var(--ok);font-weight:600;font-size:.85rem;padding:.3rem .7rem;border-radius:999px}
+.card h3{font-size:1.35rem;margin:.9rem .3rem .2rem}
+.card p{margin:0 .3rem .7rem;color:var(--muted);font-size:.95rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 .3rem .5rem}
+.tags b{font-weight:500;font-size:.85rem;border:1px solid var(--line);padding:.2rem .65rem;border-radius:999px}
+section{padding:4rem 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(1.9rem,4vw,2.8rem);max-width:30rem}
+.steps{list-style:none;counter-reset:s;padding:0;margin:2.5rem 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.steps li{counter-increment:s}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--ink);color:var(--bg);font:700 1.1rem "Bricolage Grotesque",sans-serif;margin-bottom:.8rem}
+.steps h3{font-size:1.3rem;margin-bottom:.4rem}
+.steps p,.safe p{margin:0;color:var(--muted)}
+.safe{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem 3rem;margin-top:2.5rem}
+.safe div{border-left:4px solid var(--rose);padding-left:1rem}
+.safe h3{font-size:1.2rem;margin-bottom:.3rem}
+.join{max-width:34rem}
+form{margin-top:1.75rem;display:grid;gap:1rem}
+label{font-weight:600;display:grid;gap:.4rem}
+input[type=email]{font:inherit;padding:.85rem 1rem;border-radius:14px;border:2px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
+.chk{display:flex;gap:.7rem;font-weight:400;align-items:flex-start}
+.chk input{width:1.3rem;height:1.3rem;margin-top:.2rem;accent-color:var(--rose)}
+#msg{min-height:1.5rem;font-weight:600}
+#msg.err{color:var(--rose)} #msg.ok{color:var(--ok)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;align-items:stretch}
+.plan{background:var(--surface);border:2px solid var(--line);border-radius:24px;padding:1.75rem;display:flex;flex-direction:column}
+.plan.pick{border-color:var(--amber);box-shadow:0 0 50px -12px rgba(242,182,50,.6)}
+.plan h3{font-size:1.4rem}
+.price{font:800 3rem "Bricolage Grotesque",sans-serif;margin:.6rem 0 1rem;letter-spacing:-.03em}
+.price small{font:500 1rem Figtree,sans-serif;color:var(--muted);letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:0 0 1.5rem;display:grid;gap:.6rem;flex:1}
+.plan li{padding-left:1.6rem;position:relative}
+.plan li::before{content:"\2713";position:absolute;left:0;color:var(--ok);font-weight:700}
+.plan .btn{text-align:center}
+.plan:not(.pick) .btn{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.badge{align-self:flex-start;background:var(--amber);color:var(--amber-ink);font-weight:700;font-size:.85rem;padding:.2rem .7rem;border-radius:999px;margin-bottom:.6rem}
+.vthumb{display:block;width:100%;border:0;padding:0;cursor:pointer;aspect-ratio:4/4.4;border-radius:20px;position:relative;background:linear-gradient(160deg,#6C5CE7,var(--rose) 70%,var(--amber)) center/cover no-repeat}
+.vplay{position:absolute;inset:0;margin:auto;width:4.5rem;height:4.5rem;border-radius:50%;background:rgba(255,255,255,.92)}
+.vplay::before{content:"";position:absolute;left:1.75rem;top:1.25rem;border-left:1.5rem solid #232A5C;border-top:1rem solid transparent;border-bottom:1rem solid transparent}
+dialog{border:2px solid var(--line);border-radius:24px;background:var(--surface);color:var(--ink);padding:1.75rem;width:min(92vw,560px)}
+dialog::backdrop{background:rgba(10,12,40,.7)}
+.x{position:absolute;top:.6rem;right:.8rem;background:none;border:0;font-size:1.8rem;color:var(--muted);cursor:pointer}
+.opts{display:grid;gap:.75rem;margin-top:1.25rem}
+.opts button{font:inherit;font-weight:600;text-align:left;padding:.9rem 1.1rem;border-radius:16px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;display:flex;justify-content:space-between}
+.opts button:hover{border-color:var(--amber)}
+dialog video{width:100%;border-radius:16px;background:#000;margin-top:1rem}
+dialog p{color:var(--muted);margin:.5rem 0 0}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.95rem}
+footer a{margin-right:1.25rem}
+@media (max-width:760px){
+  .hero,.steps,.safe,.plans{grid-template-columns:1fr}
+  .hero{padding-top:1.5rem}
+  nav a:not(.keep){display:none}
+}
+@media (prefers-reduced-motion:no-preference){
+  .card{animation:settle .9s ease-out both}
+  @keyframes settle{from{transform:rotate(-4deg) translateY(18px);opacity:0}to{transform:rotate(2deg);opacity:1}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#top"><i aria-hidden="true"></i>Lantern</a>
+    <nav><a href="#how">How it works</a><a href="#safety">Safety</a><a href="#pricing">Pricing</a><a class="keep" href="#join">Join</a></nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <h1>Meet adults who are here for real.</h1>
+        <p>Lantern is an 18+ community for dating and friendship. Every member is verified, every profile is reviewed, and you decide who can message you.</p>
+        <a class="btn" href="#join">Join the waitlist</a>
+        <span class="note">Free to join. Members must be 18 or older.</span>
+      </div>
+      <div class="card">
+        <button class="vthumb" id="play" type="button" aria-label="Play video"><span class="vplay" aria-hidden="true"></span></button>
+        <h3>Watch the preview</h3>
+        <p>Choose a plan to unlock the video. Members 18+ only.</p>
+      </div>
+    </div>
+
+    <section id="how">
+      <h2>From sign-up to first message in three steps</h2>
+      <ol class="steps">
+        <li><h3>Verify</h3><p>Confirm your email and your age. Verified members get a badge on their profile.</p></li>
+        <li><h3>Build your profile</h3><p>Add photos, a short bio, and your interests. Photos are reviewed before they go live.</p></li>
+        <li><h3>Connect</h3><p>Browse people nearby, send a like, and chat once you both say yes.</p></li>
+      </ol>
+    </section>
+
+    <section id="safety">
+      <h2>Safety is built in, not bolted on</h2>
+      <div class="safe">
+        <div><h3>Photo review</h3><p>Every photo is checked before it appears on a profile.</p></div>
+        <div><h3>Mutual messaging</h3><p>Only people you have matched with can message you.</p></div>
+        <div><h3>Block and report</h3><p>One tap on any profile or message. Reports are reviewed by a person.</p></div>
+        <div><h3>You control your data</h3><p>Hide your location, pause your profile, or delete your account at any time.</p></div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <h2>Pick the plan that fits you</h2>
+      <div class="plans">
+        <div class="plan">
+          <h3>Basic</h3>
+          <div class="price">$2<small> / month</small></div>
+          <ul><li>Create your profile</li><li>Browse members</li><li>10 likes per day</li></ul>
+          <a class="btn" href="#join">Choose Basic</a>
+        </div>
+        <div class="plan pick">
+          <span class="badge">Most popular</span>
+          <h3>Plus</h3>
+          <div class="price">$5<small> / month</small></div>
+          <ul><li>Everything in Basic</li><li>Unlimited likes</li><li>See who liked you</li><li>Advanced search filters</li></ul>
+          <a class="btn" href="#join">Choose Plus</a>
+        </div>
+        <div class="plan">
+          <h3>Premium</h3>
+          <div class="price">$15<small> / month</small></div>
+          <ul><li>Everything in Plus</li><li>Profile boost every week</li><li>Read receipts in chat</li><li>Priority support</li></ul>
+          <a class="btn" href="#join">Choose Premium</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="join" class="join">
+      <h2>Get early access</h2>
+      <form id="f" novalidate>
+        <label>Email address<input type="email" id="email" autocomplete="email" required></label>
+        <label class="chk"><input type="checkbox" id="age"> I confirm that I am 18 or older.</label>
+        <button class="btn" type="submit">Join the waitlist</button>
+        <div id="msg" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#">Terms</a><a href="#">Privacy</a><a href="#">Safety tips</a><a href="#">Contact</a>
+    <div style="margin-top:.8rem">© 2026 Lantern. For adults aged 18 and over.</div>
+  </footer>
+</div>
+<script>
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault();
+  var m=document.getElementById('msg'),v=document.getElementById('email').value.trim();
+  m.className='';
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){m.className='err';m.textContent='Enter a valid email address.';return;}
+  if(!document.getElementById('age').checked){m.className='err';m.textContent='Confirm that you are 18 or older to continue.';return;}
+  m.className='ok';m.textContent='You’re on the list. We’ll email you when Lantern opens.';
+  e.target.reset();
+});
+</script>
+<script>
+document.getElementById('play').addEventListener('click',function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('pricing').scrollIntoView({behavior:reduce?'auto':'smooth'});
+});
+</script>
+</body>
+</html>
